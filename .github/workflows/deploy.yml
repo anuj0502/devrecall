@@ -22,22 +22,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Force Clean Windows Files
+        run: rm -rf node_modules package-lock.json devrecall-project/node_modules devrecall-project/package-lock.json
+        
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          
       - name: Install dependencies
         run: npm install
         working-directory: ./devrecall-project
+        
       - name: Build project
         run: npm run build
         working-directory: ./devrecall-project
+        
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './devrecall-project/dist'
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
