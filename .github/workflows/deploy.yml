@@ -2,7 +2,7 @@ name: Deploy Static Site to Pages
 
 on:
   push:
-    branches: ["main"] # Change to "master" if that is your default branch
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -28,16 +28,16 @@ jobs:
           node-version: 22
       - name: Install dependencies
         run: npm install
-        working-directory: ./YOUR_SUBFOLDER_NAME
+        working-directory: ./devrecall-project
       - name: Build project
         run: npm run build
-        working-directory: ./YOUR_SUBFOLDER_NAME
+        working-directory: ./devrecall-project
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './devrecall-project/dist' 
+          path: './devrecall-project/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
